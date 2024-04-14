@@ -1,0 +1,675 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --header-height: 3.5rem;
+  /*Font and typography
+  .5rem = 8px | 1rem = 16px*/
+  --body-font: "Poppins", sans-serif;
+  --biggest-font-size: 2rem;
+  --bigger-font-size: 1.25rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.813rem;
+  --smaller-font-size: 0.75rem;
+
+  /*Font weight*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*z index*/
+  --ztooltip: 10;
+  --z-fixed: 100;
+
+  --primary-color: #504455;
+  --sec-primary-color: #b6aabb;
+  --green-primary-color: #aab6a5;
+  --green-dark-sec-color: #4e5a49;
+  --accent-light: #6c847d;
+  --accent-dark: #7b938c;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+input,
+textarea,
+button body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+input,
+textarea,
+button {
+  outline: none;
+  border: none;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+li img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/*Reusable CSS Classes*/
+.container {
+  margin-inline-start: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 5rem 4rem;
+}
+
+.section__title,
+.section__subtitle {
+  text-align: center;
+  font-weight: var(--font-semi-bold);
+}
+
+.section__title {
+  font-size: var(--h1-font-size);
+  margin-bottom: 1.5rem;
+}
+
+.section__subtitle {
+  font-size: var(--small-font-size);
+  margin-bottom: 0.25rem;
+}
+
+.section__subtitle span {
+  color: var(--first-color);
+}
+
+.main {
+  overflow: hidden; /*Untuk animasi scroll*/
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: var(--container-color);
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+}
+
+.nav {
+  margin: 0;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+}
+
+.logo {
+  margin-left: 1rem;
+  height: 50px;
+  width: 50px;
+}
+
+.nav__toggle,
+.nav__close {
+  display: none;
+}
+
+/*Navigation for mobile devices*/
+@media screen and (max-width: 1023px) {
+  .nav__menu {
+    position: fixed;
+    top: 0;
+    right: 100%;
+    background-color: hsla(0, 0%, 10%, 0.3);
+    width: 75%;
+    height: 100%;
+    padding: 4.5rem 0 0 3rem;
+    backdrop-filter: blur(24px);
+    /*-webkit-backdrop-filter: blur(24px);*/
+    transition: right 0.4s;
+
+    .nav__list {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .nav__toggle,
+  .nav__close {
+    display: flex;
+    font-size: 1.25rem;
+    color: white;
+    cursor: pointer;
+    margin-right: 1rem;
+  }
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+}
+
+.nav__link {
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+  transition: color 0.4s;
+}
+
+.nav__link:hover {
+  color: var(--first-color);
+}
+
+.nav__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+
+/*Show menu*/
+.show-menu {
+  right: 0;
+}
+
+.nav__list {
+  flex-direction: row;
+  row-gap: 3rem;
+}
+
+.nav__link {
+  color: white;
+  font-weight: var(--font-medium);
+  transition: color 0.4s;
+}
+
+.nav__link:hover {
+  color: var(--first-color);
+}
+
+.nav__item {
+  display: inline-block;
+  margin-right: 4rem;
+}
+
+/*Header*/
+.hjudul {
+  font-size: var(--biggest-font-size);
+  font-weight: var(--font-regular);
+}
+
+.hnama__contain {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.hdescription {
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-regular);
+  margin-bottom: 1.5rem;
+}
+
+.hsocial {
+  display: flex;
+  column-gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.home__social-link {
+  display: flex;
+  background-color: #504455;
+  padding: 0.5rem;
+  color: white;
+  font-size: 1.5rem;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transition: transform 0.4s;
+}
+
+.button {
+  display: inline-block;
+  background-color: #504455;
+  padding: 1rem 1.75rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: var(--font-medium);
+  transition: box-shadow 0.4s;
+}
+
+.hhome {
+  display: flex;
+  justify-content: center;
+}
+
+.hkiri {
+  margin-top: 120px;
+  margin-right: 400px;
+}
+
+.hkanan {
+  margin-top: 70px;
+}
+
+.home__blob {
+  fill: #504455;
+}
+
+.home__img {
+  justify-content: center;
+}
+
+/*About Me*/
+.about__container {
+  row-gap: 2.5rem;
+}
+
+.about__img {
+  justify-self: center;
+}
+
+.about__blob {
+  width: 420px;
+  stroke: var(--primary-color);
+  fill: transparent;
+  filter: drop-shadow(5px 12px 12px black);
+}
+
+.akiri_main {
+  margin-left: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.akiri {
+  margin-right: 300px;
+}
+.about {
+  background-color: var(--sec-primary-color);
+}
+
+.asubtitle {
+  font-size: var(--bigger-font-size);
+  margin-bottom: 1rem;
+}
+
+.atitle {
+  font-size: var(--biggest-font-size);
+  margin-bottom: 1rem;
+}
+
+.atext {
+  margin-bottom: 1rem;
+}
+
+/*Skills*/
+.skills {
+  background-color: var(--container-color);
+}
+
+.skills__container {
+  padding-bottom: 2rem;
+  row-gap: 3.5rem;
+}
+
+.skills__data {
+  text-align: center;
+}
+
+.skills_description {
+  margin-bottom: 2rem;
+}
+
+.skills__content,
+.skills__group {
+  display: grid;
+}
+
+.skills__content {
+  grid-template-columns: repeat(2, max-content);
+  column-gap: 4rem;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.skills__group {
+  row-gap: 1rem;
+  list-style: decimal-leading-zero;
+}
+
+.skills__item {
+  font-weight: var(--font-medium);
+  columns: var(--title-color);
+}
+
+.skills__item::marker {
+  color: var(--first-color);
+}
+
+.s-main {
+  display: flex;
+}
+
+.skiri {
+  width: 50%;
+  margin-left: 100px;
+}
+
+.skanan {
+  width: 50%;
+}
+
+.skills-ul {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  column-gap: 5rem;
+  row-gap: 1rem;
+}
+
+.skills-list {
+  display: flex;
+}
+
+.skills-list p {
+  width: 100px;
+  text-align: center;
+  font-weight: var(--font-semi-bold);
+  font-size: 1.5rem;
+}
+
+.g-skills {
+  width: 100px;
+  height: 100px;
+}
+
+.stitle {
+  font-weight: var(--font-semi-bold);
+  font-size: 2.5rem;
+}
+
+.stitle span {
+  color: #4e5a49;
+}
+
+.ssubtitle {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: var(--font-regular);
+}
+
+/*Projects*/
+.projects {
+  background-color: var(--sec-primary-color);
+}
+
+.projects__container {
+  row-gap: 2rem;
+  padding-block: 1rem;
+  display: flex;
+}
+
+.projects__card {
+  display: flex;
+  position: relative;
+  border-radius: 1rem;
+  margin-left: 40px;
+}
+
+.projects__img2 {
+  width: 200px;
+}
+
+.projects__img1 {
+  height: 381px;
+}
+
+.projects__subtitle,
+.projects__button {
+  columns: var(--title-color);
+  font-size: var(--small-font-size);
+}
+
+.projects__subtitle {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.projects__title {
+  font-size: var(--h2-font-size);
+  margin-bottom: 0.75rem;
+}
+
+.projects__button {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  font-weight: var(--font-medium);
+}
+
+.projects__button i {
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.projects__modal {
+  margin-left: 40px;
+}
+
+.section__subtitle-p {
+  margin-left: 60px;
+}
+
+.section__title-p {
+  margin-left: 60px;
+}
+
+.why {
+  margin-top: 50px;
+  justify-content: center;
+  text-align: center;
+}
+
+.tes {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.review {
+  max-width: 700px;
+  color: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  text-align: center;
+  padding: 20px;
+}
+
+.rkotak {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+}
+
+.rnama,
+.rbintang,
+.rlink {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.rcontain {
+  background-color: white;
+  color: #504455;
+  padding: 10px;
+  display: grid;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.c__title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+}
+
+.tes5 {
+  justify-content: center;
+  display: flex;
+}
+
+/* .c__form {
+  display: grid;
+} */
+
+.no__hp {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+  width: 297px;
+  height: 50px;
+}
+
+.tes1,
+.tes2 {
+  border-radius: 5px;
+  width: 297px;
+  height: 50px;
+}
+
+.tes3 {
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 900px;
+  height: 200px;
+}
+
+.c__bot {
+  display: flex;
+  justify-content: center;
+}
+
+.simpan {
+  background-color: var(--primary-color);
+  color: white;
+  margin-top: 30px;
+  padding: 1.2rem;
+  border-radius: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.tes7 {
+  margin-top: 40px;
+  justify-content: center;
+  display: flex;
+}
+
+.footer {
+  background-color: var(--primary-color);
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fb__kiri {
+  display: flex;
+  align-items: center;
+}
+
+.ftext {
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+}
+
+.flogo {
+  height: 50px;
+  width: 50px;
+  margin-left: 1rem;
+}
+
+.logoa,
+.logob {
+  margin-right: 50px;
+  font-size: 3rem;
+  color: white;
+}
+
+.logoc {
+  font-size: 3rem;
+  color: white;
+}
+
+.cont_logo {
+  display: flex;
+  align-items: center;
+}
+
+.fb__kanan {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.c {
+  font-size: 2rem;
+  color: white;
+}
+
+.endtext {
+  color: white;
+  font-weight: 500;
+}
+
+.alert {
+  display: none;
+  position: fixed; /* Mengatur posisi elemen alert */
+  top: 0; /* Menempatkan elemen alert di bagian atas halaman */
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  background-color: #f44336; /* Warna latar belakang untuk alert error */
+  color: white; /* Warna teks untuk alert */
+  z-index: 1000; /* Menentukan z-index untuk menempatkan elemen alert di atas konten */
+}
+
+.alert-success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.alert-error {
+  background-color: #f44336;
+  color: white;
+}
